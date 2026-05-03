@@ -1,145 +1,182 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.4">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi CV Digital - Mario Muñoz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #0f172a;
+            --accent-tag: #cffafe;
+            --tag-text: #0891b2;
+            --wsp: #25d366;
+            --email: #1e293b;
+            --github: #4b5563;
+            --bg: #f8fafc;
+        }
+
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; background-color: var(--bg); display: flex; flex-direction: column; align-items: center; }
+
+        /* --- Navbar --- */
+        nav { width: 100%; max-width: 1200px; display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; box-sizing: border-box; background: white; }
+        .logo { font-weight: bold; font-size: 1.2rem; color: var(--primary); }
+        .nav-links { display: flex; gap: 20px; list-style: none; padding: 0; margin: 0; }
+        .nav-links a { text-decoration: none; color: #64748b; font-weight: 500; }
+
+        /* --- Perfil --- */
+        .profile-img-container { margin-top: 60px; }
+        /* IMPORTANTE: Agregué el ID 'foto-perfil' para que el JS lo reconozca */
+        .profile-img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+        /* --- Textos Principales --- */
+        h1 { font-size: 3rem; margin: 20px 0 10px; color: var(--primary); text-align: center; }
+        h3 { font-size: 1.5rem; color: #64748b; font-weight: normal; margin: 0 0 20px; text-align: center; }
+        .description-p { max-width: 700px; text-align: center; color: #475569; margin-bottom: 30px; }
+
+        /* --- Skills Tags --- */
+        .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; max-width: 600px; margin-bottom: 40px; }
+        .skill-tag { background-color: var(--accent-tag); color: var(--tag-text); padding: 5px 15px; border-radius: 20px; font-weight: bold; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.9rem; }
+
+        /* --- Botones de Contacto --- */
+        .button-bar { display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 40px; }
+        .btn { text-decoration: none; color: white; padding: 15px 30px; border-radius: 50px; font-weight: bold; display: flex; align-items: center; gap: 10px; transition: 0.3s; cursor: pointer; border:none; }
+        .btn-wsp { background-color: var(--wsp); }
+        .btn-email { background-color: var(--email); }
+        .btn-projects { background-color: var(--github); }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+
+        /* --- Admin Modal --- */
+        .admin-access { position: fixed; bottom: 20px; left: 20px; opacity: 0.3; transition: 0.3s; z-index: 1000; }
+        .admin-access:hover { opacity: 1; }
+        #admin-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; }
+        .modal-content { background: white; padding: 30px; border-radius: 15px; width: 90%; max-width: 500px; display: flex; flex-direction: column; gap: 15px; }
+        .modal-content input, .modal-content textarea { padding: 10px; border: 1px solid #ddd; border-radius: 5px; width: 100%; box-sizing: border-box; }
+        #preview-img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin: 10px auto; display: block; border: 2px solid var(--tag-text); }
+    </style>
 </head>
 <body>
-<p class="p1">xn; gap: 15px; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.modal-content input, .modal-content textarea { padding: 10px; border: 1px solid #ddd; border-radius: 5px; width: 100%; box-sizing: border-box; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>#preview-img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin: 10px auto; display: block; border: 2px solid var(--tag-text); }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;nav&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="logo"&gt;MM&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;ul class="nav-links"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;&lt;a href="#inicio"&gt;Inicio&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;&lt;a href="#experiencia"&gt;Experiencia&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;li&gt;&lt;a href="#proyectos"&gt;Proyectos&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/nav&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="profile-img-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;img src="https://via.placeholder.com/150" alt="Foto" class="profile-img" id="foto-perfil"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h1 id="nombre-db"&gt;Cargando...&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h3 id="titulo-db"&gt;Analista Programador&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;p class="description-p" id="bio-db"&gt;Cargando información profesional...&lt;/p&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="skills-grid"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="skill-tag"&gt;&lt;i class="fas fa-project-diagram"&gt;&lt;/i&gt; Modelado UML&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="skill-tag"&gt;&lt;i class="fas fa-database"&gt;&lt;/i&gt; SQL / Bases de Datos&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="skill-tag"&gt;&lt;i class="fas fa-chart-line"&gt;&lt;/i&gt; Análisis de Requerimientos&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="skill-tag"&gt;&lt;i class="fas fa-tasks"&gt;&lt;/i&gt; Gestión de Proyectos&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="button-bar"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;a id="btn-wsp" target="_blank" class="btn btn-wsp"&gt;&lt;i class="fab fa-whatsapp"&gt;&lt;/i&gt; WhatsApp&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;a id="btn-email" class="btn btn-email"&gt;&lt;i class="far fa-envelope"&gt;&lt;/i&gt; Correo&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;a id="btn-github" target="_blank" class="btn btn-projects"&gt;&lt;i class="fas fa-folder"&gt;&lt;/i&gt; Proyectos&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="admin-access"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;button onclick="abrirAdmin()" class="btn" style="padding: 10px; font-size: 12px; background: #64748b;"&gt;⚙️ Admin&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="admin-modal"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="modal-content"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2&gt;Panel Profesional&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;label&gt;Nueva Foto:&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;input type="file" id="input-foto" accept="image/*"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;label&gt;Biografía:&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;textarea id="edit-bio" rows="4"&gt;&lt;/textarea&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div style="display: flex; gap: 10px;"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;button onclick="cerrarAdmin()" class="btn" style="background:#ef4444; flex:1"&gt;Cerrar&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;button id="btn-guardar-cambios" class="btn" style="background:#22c55e; flex:2"&gt;Guardar Todo&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"&gt;&lt;/script&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>// CONFIGURACIÓN (Tus datos reales)</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const SUPABASE_URL = 'https://yxzmsernvdffdcdmknwa.supabase.co';</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const SUPABASE_KEY = 'sb_publishable_SYqU4r2IPM9bR96dPKi4Fw_vMHEpRk8';</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// 1. CARGAR DATOS</p>
-<p class="p1"><span class="Apple-converted-space">        </span>async function cargarInformacion() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>try {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const { data, error } = await _supabase.from('perfil').select('*').eq('id', 1).single();</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (error) throw error;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (data) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>document.getElementById('nombre-db').innerText = `Hola, soy ${data.nombre}`;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>document.getElementById('bio-db').innerText = data.biografia;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>if(data.foto_url) document.getElementById('foto-perfil').src = data.foto_url;</p>
-<p class="p2"><span class="Apple-converted-space">                    </span></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>document.getElementById('btn-wsp').href = `https://wa.me/${data.whatsapp}`;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>document.getElementById('btn-email').href = `mailto:${data.email}`;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>document.getElementById('btn-github').href = data.github;</p>
-<p class="p2"><span class="Apple-converted-space">                    </span></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>document.getElementById('edit-bio').value = data.biografia;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>} catch (err) { console.error("Error:", err.message); }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// 2. SUBIR FOTO Y ACTUALIZAR</p>
-<p class="p1"><span class="Apple-converted-space">        </span>async function guardarTodo() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const fileInput = document.getElementById('input-foto');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const bioText = document.getElementById('edit-bio').value;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const btn = document.getElementById('btn-guardar-cambios');</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>btn.innerText = "⌛ Guardando...";</p>
-<p class="p1"><span class="Apple-converted-space">            </span>btn.disabled = true;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>try {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>let finalFotoUrl = null;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Subida al bucket 'avatares.'</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (fileInput.files.length &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const file = fileInput.files[0];</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const filePath = `public/${Date.now()}-${file.name}`;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const { error: upErr } = await _supabase.storage.from('avatares.').upload(filePath, file);</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>if (upErr) throw upErr;</p>
-<p class="p2"><span class="Apple-converted-space">                    </span></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const { data } = _supabase.storage.from('avatares.').getPublicUrl(filePath);</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>finalFotoUrl = data.publicUrl;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>const updates = { biografia: bioText };</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (finalFotoUrl) updates.foto_url = finalFotoUrl;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>const { error: dbErr } = await _supabase.from('perfil').update(updates).eq('id', 1);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (dbErr) throw dbErr;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>alert("¡Perfil actualizado!");</p>
-<p class="p1"><span class="Apple-converted-space">                </span>location.reload();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>} catch (err) { alert("Error: " + err.message); }</p>
-<p class="p1"><span class="Apple-converted-space">            </span>finally { btn.innerText = "Guardar Todo"; btn.disabled = false; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// 3. FUNCIONES DE MODAL</p>
-<p class="p1"><span class="Apple-converted-space">        </span>function abrirAdmin() { if (prompt("Clave:") === "1234") document.getElementById('admin-modal').style.display = 'flex'; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>function cerrarAdmin() { document.getElementById('admin-modal').style.display = 'none'; }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// INICIO</p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.addEventListener('DOMContentLoaded', () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>cargarInformacion();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('btn-guardar-cambios').onclick = guardarTodo;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;<span class="Apple-converted-space"> </span></p>
+
+    <nav>
+        <div class="logo">MM</div>
+        <ul class="nav-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#experiencia">Experiencia</a></li>
+            <li><a href="#proyectos">Proyectos</a></li>
+        </ul>
+    </nav>
+
+    <div class="profile-img-container">
+        <img src="https://via.placeholder.com/150" alt="Foto" class="profile-img" id="foto-perfil">
+    </div>
+
+    <h1 id="nombre-db">Cargando...</h1>
+    <h3 id="titulo-db">Analista Programador</h3>
+    <p class="description-p" id="bio-db">Cargando información profesional...</p>
+
+    <div class="skills-grid">
+        <div class="skill-tag"><i class="fas fa-project-diagram"></i> Modelado UML</div>
+        <div class="skill-tag"><i class="fas fa-database"></i> SQL / Bases de Datos</div>
+        <div class="skill-tag"><i class="fas fa-chart-line"></i> Análisis de Requerimientos</div>
+        <div class="skill-tag"><i class="fas fa-tasks"></i> Gestión de Proyectos</div>
+    </div>
+
+    <div class="button-bar">
+        <a id="btn-wsp" target="_blank" class="btn btn-wsp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a id="btn-email" class="btn btn-email"><i class="far fa-envelope"></i> Correo</a>
+        <a id="btn-github" target="_blank" class="btn btn-projects"><i class="fas fa-folder"></i> Proyectos</a>
+    </div>
+
+    <div class="admin-access">
+        <button onclick="abrirAdmin()" class="btn" style="padding: 10px; font-size: 12px; background: #64748b;">⚙️ Admin</button>
+    </div>
+
+    <div id="admin-modal">
+        <div class="modal-content">
+            <h2>Panel Profesional</h2>
+            <label>Nueva Foto:</label>
+            <input type="file" id="input-foto" accept="image/*">
+            <label>Biografía:</label>
+            <textarea id="edit-bio" rows="4"></textarea>
+            <div style="display: flex; gap: 10px;">
+                <button onclick="cerrarAdmin()" class="btn" style="background:#ef4444; flex:1">Cerrar</button>
+                <button id="btn-guardar-cambios" class="btn" style="background:#22c55e; flex:2">Guardar Todo</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+        // CONFIGURACIÓN (Tus datos reales)
+        const SUPABASE_URL = 'https://yxzmsernvdffdcdmknwa.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_SYqU4r2IPM9bR96dPKi4Fw_vMHEpRk8';
+        const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        // 1. CARGAR DATOS
+        async function cargarInformacion() {
+            try {
+                const { data, error } = await _supabase.from('perfil').select('*').eq('id', 1).single();
+                if (error) throw error;
+                if (data) {
+                    document.getElementById('nombre-db').innerText = `Hola, soy ${data.nombre}`;
+                    document.getElementById('bio-db').innerText = data.biografia;
+                    if(data.foto_url) document.getElementById('foto-perfil').src = data.foto_url;
+                    
+                    document.getElementById('btn-wsp').href = `https://wa.me/${data.whatsapp}`;
+                    document.getElementById('btn-email').href = `mailto:${data.email}`;
+                    document.getElementById('btn-github').href = data.github;
+                    
+                    document.getElementById('edit-bio').value = data.biografia;
+                }
+            } catch (err) { console.error("Error:", err.message); }
+        }
+
+        // 2. SUBIR FOTO Y ACTUALIZAR
+        async function guardarTodo() {
+            const fileInput = document.getElementById('input-foto');
+            const bioText = document.getElementById('edit-bio').value;
+            const btn = document.getElementById('btn-guardar-cambios');
+            
+            btn.innerText = "⌛ Guardando...";
+            btn.disabled = true;
+
+            try {
+                let finalFotoUrl = null;
+
+                // Subida al bucket 'avatares.'
+                if (fileInput.files.length > 0) {
+                    const file = fileInput.files[0];
+                    const filePath = `public/${Date.now()}-${file.name}`;
+                    const { error: upErr } = await _supabase.storage.from('avatares.').upload(filePath, file);
+                    if (upErr) throw upErr;
+                    
+                    const { data } = _supabase.storage.from('avatares.').getPublicUrl(filePath);
+                    finalFotoUrl = data.publicUrl;
+                }
+
+                const updates = { biografia: bioText };
+                if (finalFotoUrl) updates.foto_url = finalFotoUrl;
+
+                const { error: dbErr } = await _supabase.from('perfil').update(updates).eq('id', 1);
+                if (dbErr) throw dbErr;
+
+                alert("¡Perfil actualizado!");
+                location.reload();
+            } catch (err) { alert("Error: " + err.message); }
+            finally { btn.innerText = "Guardar Todo"; btn.disabled = false; }
+        }
+
+        // 3. FUNCIONES DE MODAL
+        function abrirAdmin() { if (prompt("Clave:") === "1234") document.getElementById('admin-modal').style.display = 'flex'; }
+        function cerrarAdmin() { document.getElementById('admin-modal').style.display = 'none'; }
+
+        // INICIO
+        document.addEventListener('DOMContentLoaded', () => {
+            cargarInformacion();
+            document.getElementById('btn-guardar-cambios').onclick = guardarTodo;
+        });
+    </script>
 </body>
-</html>
+</html> 
