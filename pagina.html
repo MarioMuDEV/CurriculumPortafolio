@@ -179,4 +179,139 @@
         });
     </script>
 </body>
-</html> 
+</html>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Visualización de Entorno - Mario Muñoz</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #05050a; /* Fondo ultra oscuro para profundidad */
+            overflow: hidden;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* Capa de degradado mimetizado */
+        .gradient-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 15% 15%, rgba(138, 43, 226, 0.2) 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(0, 119, 255, 0.2) 0%, transparent 45%);
+            z-index: 1;
+        }
+
+        /* Canvas para los gráficos mimetizados (Red de Nodos) */
+        canvas {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            filter: blur(1px); /* Suaviza los gráficos para mimetizarlos mejor */
+        }
+
+        /* Texto de identificación minimalista */
+        .overlay-text {
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+            color: rgba(255, 255, 255, 0.3);
+            text-align: right;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin: 0;
+            letter-spacing: 5px;
+            font-weight: 300;
+        }
+
+        p {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin: 5px 0 0 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="gradient-overlay"></div>
+    <canvas id="techCanvas"></canvas>
+
+    <div class="overlay-text">
+        <h1>MARIO MUÑOZ</h1>
+        <p>ANALISTA PROGRAMADOR // ECOTRACK SYSTEM</p>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('techCanvas');
+        const ctx = canvas.getContext('2d');
+        let dots = [];
+        const dotCount = 120; // Densidad de la red
+        const connectionDist = 160;
+
+        function init() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            dots = [];
+            for (let i = 0; i < dotCount; i++) {
+                dots.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    speedX: (Math.random() - 0.5) * 0.4,
+                    speedY: (Math.random() - 0.5) * 0.4
+                });
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            for (let i = 0; i < dotCount; i++) {
+                let d = dots[i];
+                d.x += d.speedX;
+                d.y += d.speedY;
+
+                if (d.x < 0 || d.x > canvas.width) d.speedX *= -1;
+                if (d.y < 0 || d.y > canvas.height) d.speedY *= -1;
+
+                // Dibujar conexiones mimetizadas
+                for (let j = i + 1; j < dotCount; j++) {
+                    let d2 = dots[j];
+                    let dist = Math.hypot(d.x - d2.x, d.y - d2.y);
+                    
+                    if (dist < connectionDist) {
+                        let alpha = 1 - (dist / connectionDist);
+                        // Mezcla de azul y morado para las líneas
+                        ctx.strokeStyle = `rgba(138, 43, 226, ${alpha * 0.2})`;
+                        if (i % 2 === 0) ctx.strokeStyle = `rgba(0, 119, 255, ${alpha * 0.2})`;
+                        
+                        ctx.lineWidth = 0.8;
+                        ctx.beginPath();
+                        ctx.moveTo(d.x, d.y);
+                        ctx.lineTo(d2.x, d2.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', init);
+        init();
+        animate();
+    </script>
+</body>
+</html>
