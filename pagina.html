@@ -514,3 +514,212 @@
     </script>
 </body>
 </html>
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Visualización Atmosférica - EcoTrack</title>
+    <style>
+        :root {
+            --bg-deep: #08080f;
+            --soft-purple: rgba(157, 78, 221, 0.1);
+            --soft-blue: rgba(72, 202, 228, 0.1);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-deep);
+            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
+            perspective: 1500px; 
+        }
+
+        /* Iluminación ambiental mimetizada */
+        .ambient-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, var(--soft-purple) 0%, transparent 60%),
+                radial-gradient(circle at 80% 80%, var(--soft-blue) 0%, transparent 60%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Canvas con efecto 3D pronunciado */
+        #techCanvas {
+            position: fixed;
+            top: -15%;
+            left: -15%;
+            width: 130%;
+            height: 130%;
+            z-index: 2;
+            opacity: 0.6;
+            transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .main-container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            gap: 20px;
+        }
+
+        /* Botones minimalistas y elevados */
+        .nav-link {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.5);
+            padding: 18px 60px;
+            width: 250px;
+            text-align: center;
+            border-radius: 1px;
+            font-size: 0.8rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            backdrop-filter: blur(5px);
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-15px) translateZ(60px);
+            background: rgba(255, 255, 255, 0.03);
+            border-color: rgba(72, 202, 228, 0.2);
+            color: #ffffff;
+            letter-spacing: 6px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Identificación en lado derecho inferior únicamente */
+        .footer-id {
+            position: absolute;
+            bottom: 40px;
+            right: 50px;
+            text-align: right;
+            z-index: 15;
+            pointer-events: none;
+            opacity: 0.4;
+        }
+
+        .footer-id h2 {
+            font-size: 1rem;
+            font-weight: 200;
+            letter-spacing: 5px;
+            margin: 0;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .footer-id p {
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            color: var(--soft-blue);
+            margin: 5px 0 0 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow"></div>
+    <canvas id="techCanvas"></canvas>
+
+    <div class="main-container">
+        <div class="nav-link">EcoTrack System</div>
+        <div class="nav-link">TicketBeat 247</div>
+        <div class="nav-link">Arquitectura Admin</div>
+    </div>
+
+    <div class="footer-id">
+        <h2>MARIO MUÑOZ</h2>
+        <p>SYSTEM ANALYST // 2026</p>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('techCanvas');
+        const ctx = canvas.getContext('2d');
+        let points = [];
+        
+        function init() {
+            canvas.width = window.innerWidth * 1.3;
+            canvas.height = window.innerHeight * 1.3;
+            points = [];
+            for (let i = 0; i < 130; i++) {
+                points.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    z: Math.random() * 80 + 20, 
+                    vx: (Math.random() - 0.5) * 0.15,
+                    vy: (Math.random() - 0.5) * 0.15
+                });
+            }
+        }
+
+        window.addEventListener('mousemove', (e) => {
+            const rotX = (e.clientY - window.innerHeight / 2) / 40;
+            const rotY = (e.clientX - window.innerWidth / 2) / 40;
+            
+            canvas.style.transform = `rotateX(${-rotX}deg) rotateY(${rotY}deg) translateZ(0px)`;
+        });
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            points.forEach((p, i) => {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                const brightness = (p.z / 100) * 0.4;
+                ctx.fillStyle = `rgba(255, 255, 255, ${brightness})`;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.z / 50, 0, Math.PI * 2);
+                ctx.fill();
+
+                for (let j = i + 1; j < points.length; j++) {
+                    let p2 = points[j];
+                    let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                    if (dist < 200) {
+                        const alpha = (1 - dist / 200) * 0.12;
+                        ctx.strokeStyle = i % 3 === 0 ? 
+                            `rgba(157, 78, 221, ${alpha})` : 
+                            `rgba(72, 202, 228, ${alpha})`;
+                        
+                        ctx.lineWidth = 0.4;
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                }
+            });
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', init);
+        init();
+        animate();
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
