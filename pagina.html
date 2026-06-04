@@ -1,3 +1,417 @@
+
+
+raw
+Index · HTML
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mario Muñoz — Analista Programador</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+ 
+    <style>
+        :root {
+            --primary:    #0f172a;
+            --accent:     #0891b2;
+            --accent-dim: #cffafe;
+            --tag-text:   #0891b2;
+            --wsp:        #25d366;
+            --dark-btn:   #1e293b;
+            --muted-btn:  #4b5563;
+            --bg:         #f8fafc;
+            --muted:      #64748b;
+            --border:     #e2e8f0;
+        }
+ 
+        *, *::before, *::after { box-sizing: border-box; }
+ 
+        body {
+            font-family: 'DM Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--primary);
+            margin: 0;
+            padding: 0;
+            background: var(--bg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+ 
+        /* ── Navbar ─────────────────────────────── */
+        nav {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: white;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+ 
+        .logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.4rem;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+ 
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+ 
+        .nav-links a {
+            text-decoration: none;
+            color: var(--muted);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+ 
+        .nav-links a:hover { color: var(--accent); }
+ 
+        /* ── Hero / Perfil ───────────────────────── */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 70px 20px 40px;
+            text-align: center;
+        }
+ 
+        .profile-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            transition: transform 0.3s;
+        }
+ 
+        .profile-img:hover { transform: scale(1.04); }
+ 
+        h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.8rem;
+            margin: 24px 0 6px;
+            color: var(--primary);
+            letter-spacing: -1px;
+        }
+ 
+        h3 {
+            font-size: 1.1rem;
+            color: var(--accent);
+            font-weight: 500;
+            margin: 0 0 18px;
+            letter-spacing: 0.5px;
+        }
+ 
+        .bio {
+            max-width: 620px;
+            color: #475569;
+            margin-bottom: 36px;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+ 
+        /* ── Skills ──────────────────────────────── */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            max-width: 560px;
+            width: 100%;
+            margin-bottom: 36px;
+        }
+ 
+        .skill-tag {
+            background: var(--accent-dim);
+            color: var(--tag-text);
+            padding: 8px 16px;
+            border-radius: 24px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+ 
+        .skill-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(8,145,178,0.2);
+        }
+ 
+        /* ── Botones de Contacto ─────────────────── */
+        .button-bar {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 60px;
+        }
+ 
+        .btn {
+            text-decoration: none;
+            color: white;
+            padding: 13px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+ 
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+ 
+        .btn-wsp   { background: var(--wsp); }
+        .btn-email { background: var(--dark-btn); }
+        .btn-projects { background: var(--muted-btn); }
+ 
+        /* ── Admin flotante ──────────────────────── */
+        .admin-access {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            z-index: 1000;
+        }
+ 
+        .btn-admin {
+            opacity: 0.3;
+            padding: 10px 16px;
+            font-size: 12px;
+            background: #64748b;
+            transition: opacity 0.3s;
+        }
+ 
+        .btn-admin:hover { opacity: 1; }
+ 
+        /* ── Modal Admin ─────────────────────────── */
+        #admin-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.75);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+ 
+        #admin-modal.open { display: flex; }
+ 
+        .modal-content {
+            background: white;
+            padding: 32px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 480px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+ 
+        .modal-content h2 {
+            font-family: 'DM Serif Display', serif;
+            margin: 0;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+ 
+        .modal-content label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--muted);
+            margin-bottom: -8px;
+        }
+ 
+        .modal-content input,
+        .modal-content textarea {
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            width: 100%;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+ 
+        .modal-content input:focus,
+        .modal-content textarea:focus { border-color: var(--accent); }
+ 
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+        }
+ 
+        .btn-danger { background: #ef4444; flex: 1; }
+        .btn-success { background: #22c55e; flex: 2; }
+    </style>
+</head>
+<body>
+ 
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">MM</div>
+        <ul class="nav-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#experiencia">Experiencia</a></li>
+            <li><a href="#proyectos">Proyectos</a></li>
+        </ul>
+    </nav>
+ 
+    <!-- Hero -->
+    <section class="hero" id="inicio">
+        <img
+            id="foto-perfil"
+            src="https://mariomudev.github.io/CurriculumPortafolio/foto_curriculum.jpg"
+            alt="Foto de perfil de Mario Muñoz"
+            class="profile-img"
+        >
+        <h1 id="nombre-db">Cargando...</h1>
+        <h3 id="titulo-db">Analista Programador</h3>
+        <p class="bio" id="bio-db">Cargando información profesional...</p>
+ 
+        <div class="skills-grid">
+            <div class="skill-tag"><i class="fas fa-project-diagram"></i> Modelado UML</div>
+            <div class="skill-tag"><i class="fas fa-database"></i> SQL / Bases de Datos</div>
+            <div class="skill-tag"><i class="fas fa-chart-line"></i> Análisis de Requerimientos</div>
+            <div class="skill-tag"><i class="fas fa-tasks"></i> Gestión de Proyectos</div>
+        </div>
+ 
+        <div class="button-bar">
+            <a id="btn-wsp"    target="_blank" class="btn btn-wsp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <a id="btn-email"  class="btn btn-email"><i class="far fa-envelope"></i> Correo</a>
+            <a id="btn-github" target="_blank" class="btn btn-projects"><i class="fas fa-folder"></i> Proyectos</a>
+        </div>
+    </section>
+ 
+    <!-- Acceso admin flotante -->
+    <div class="admin-access">
+        <button onclick="abrirAdmin()" class="btn btn-admin">⚙️ Admin</button>
+    </div>
+ 
+    <!-- Modal admin -->
+    <div id="admin-modal">
+        <div class="modal-content">
+            <h2>Panel Profesional</h2>
+            <label>Nueva Foto:</label>
+            <input type="file" id="input-foto" accept="image/*">
+            <label>Biografía:</label>
+            <textarea id="edit-bio" rows="4" placeholder="Escribe tu biografía profesional..."></textarea>
+            <div class="modal-actions">
+                <button onclick="cerrarAdmin()" class="btn btn-danger">Cerrar</button>
+                <button id="btn-guardar-cambios" class="btn btn-success">Guardar Todo</button>
+            </div>
+        </div>
+    </div>
+ 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const SUPABASE_URL = 'https://yxzmsernvdffdcdmknwa.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_SYqU4r2IPM9bR96dPKi4Fw_vMHEpRk8';
+        const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+ 
+        // ── Cargar datos del perfil ────────────────────────────
+        async function cargarInformacion() {
+            try {
+                const { data, error } = await db.from('perfil').select('*').eq('id', 1).single();
+                if (error) throw error;
+ 
+                document.getElementById('nombre-db').textContent = `Hola, soy ${data.nombre}`;
+                document.getElementById('bio-db').textContent     = data.biografia;
+                document.getElementById('edit-bio').value         = data.biografia;
+ 
+                if (data.foto_url) document.getElementById('foto-perfil').src = data.foto_url;
+ 
+                document.getElementById('btn-wsp').href    = `https://wa.me/${data.whatsapp}`;
+                document.getElementById('btn-email').href  = `mailto:${data.email}`;
+                document.getElementById('btn-github').href = data.github;
+ 
+            } catch (err) {
+                console.error('Error cargando perfil:', err.message);
+            }
+        }
+ 
+        // ── Guardar cambios desde el modal ─────────────────────
+        async function guardarTodo() {
+            const fileInput = document.getElementById('input-foto');
+            const bioText   = document.getElementById('edit-bio').value;
+            const btn       = document.getElementById('btn-guardar-cambios');
+ 
+            btn.textContent = '⌛ Guardando...';
+            btn.disabled    = true;
+ 
+            try {
+                const updates = { biografia: bioText };
+ 
+                if (fileInput.files.length > 0) {
+                    const file     = fileInput.files[0];
+                    const filePath = `public/${Date.now()}-${file.name}`;
+ 
+                    const { error: upErr } = await db.storage.from('avatares.').upload(filePath, file);
+                    if (upErr) throw upErr;
+ 
+                    const { data } = db.storage.from('avatares.').getPublicUrl(filePath);
+                    updates.foto_url = data.publicUrl;
+                }
+ 
+                const { error: dbErr } = await db.from('perfil').update(updates).eq('id', 1);
+                if (dbErr) throw dbErr;
+ 
+                alert('¡Perfil actualizado!');
+                location.reload();
+ 
+            } catch (err) {
+                alert('Error: ' + err.message);
+            } finally {
+                btn.textContent = 'Guardar Todo';
+                btn.disabled    = false;
+            }
+        }
+ 
+        // ── Modal helpers ──────────────────────────────────────
+        function abrirAdmin() {
+            if (prompt('Clave:') === '1234') {
+                document.getElementById('admin-modal').classList.add('open');
+            }
+        }
+ 
+        function cerrarAdmin() {
+            document.getElementById('admin-modal').classList.remove('open');
+        }
+ 
+        // ── Init ───────────────────────────────────────────────
+        document.addEventListener('DOMContentLoaded', () => {
+            cargarInformacion();
+            document.getElementById('btn-guardar-cambios').addEventListener('click', guardarTodo);
+        });
+    </script>
+</body>
+</html>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -211,724 +625,6 @@
         window.addEventListener('resize', init);
         init();
         draw();
-    </script>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi CV Digital - Mario Muñoz</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --primary: #0f172a;
-            --accent-tag: #cffafe;
-            --tag-text: #0891b2;
-            --wsp: #25d366;
-            --email: #1e293b;
-            --github: #4b5563;
-            --bg: #f8fafc;
-        }
-
-        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; background-color: var(--bg); display: flex; flex-direction: column; align-items: center; }
-
-        /* --- Navbar --- */
-        nav { width: 100%; max-width: 1200px; display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; box-sizing: border-box; background: white; }
-        .logo { font-weight: bold; font-size: 1.2rem; color: var(--primary); }
-        .nav-links { display: flex; gap: 20px; list-style: none; padding: 0; margin: 0; }
-        .nav-links a { text-decoration: none; color: #64748b; font-weight: 500; }
-
-        /* --- Perfil --- */
-        .profile-img-container { margin-top: 60px; }
-        /* IMPORTANTE: Agregué el ID 'foto-perfil' para que el JS lo reconozca */
-        .profile-img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-
-        /* --- Textos Principales --- */
-        h1 { font-size: 3rem; margin: 20px 0 10px; color: var(--primary); text-align: center; }
-        h3 { font-size: 1.5rem; color: #64748b; font-weight: normal; margin: 0 0 20px; text-align: center; }
-        .description-p { max-width: 700px; text-align: center; color: #475569; margin-bottom: 30px; }
-
-        /* --- Skills Tags --- */
-        .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; max-width: 600px; margin-bottom: 40px; }
-        .skill-tag { background-color: var(--accent-tag); color: var(--tag-text); padding: 5px 15px; border-radius: 20px; font-weight: bold; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.9rem; }
-
-        /* --- Botones de Contacto --- */
-        .button-bar { display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 40px; }
-        .btn { text-decoration: none; color: white; padding: 15px 30px; border-radius: 50px; font-weight: bold; display: flex; align-items: center; gap: 10px; transition: 0.3s; cursor: pointer; border:none; }
-        .btn-wsp { background-color: var(--wsp); }
-        .btn-email { background-color: var(--email); }
-        .btn-projects { background-color: var(--github); }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-
-        /* --- Admin Modal --- */
-        .admin-access { position: fixed; bottom: 20px; left: 20px; opacity: 0.3; transition: 0.3s; z-index: 1000; }
-        .admin-access:hover { opacity: 1; }
-        #admin-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; }
-        .modal-content { background: white; padding: 30px; border-radius: 15px; width: 90%; max-width: 500px; display: flex; flex-direction: column; gap: 15px; }
-        .modal-content input, .modal-content textarea { padding: 10px; border: 1px solid #ddd; border-radius: 5px; width: 100%; box-sizing: border-box; }
-        #preview-img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin: 10px auto; display: block; border: 2px solid var(--tag-text); }
-    </style>
-</head>
-<body>
-
-    <nav>
-        <div class="logo">MM</div>
-        <ul class="nav-links">
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#experiencia">Experiencia</a></li>
-            <li><a href="#proyectos">Proyectos</a></li>
-        </ul>
-    </nav>
-
-    <div class="profile-img-container">
-        <img src="https://mariomudev.github.io/CurriculumPortafolio/foto_curriculum.jpg" alt="Foto" class="profile-img" id="foto-perfil">
-    </div>
-
-    <h1 id="nombre-db">Cargando...</h1>
-    <h3 id="titulo-db">Analista Programador</h3>
-    <p class="description-p" id="bio-db">Cargando información profesional...</p>
-
-    <div class="skills-grid">
-        <div class="skill-tag"><i class="fas fa-project-diagram"></i> Modelado UML</div>
-        <div class="skill-tag"><i class="fas fa-database"></i> SQL / Bases de Datos</div>
-        <div class="skill-tag"><i class="fas fa-chart-line"></i> Análisis de Requerimientos</div>
-        <div class="skill-tag"><i class="fas fa-tasks"></i> Gestión de Proyectos</div>
-    </div>
-
-    <div class="button-bar">
-        <a id="btn-wsp" target="_blank" class="btn btn-wsp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-        <a id="btn-email" class="btn btn-email"><i class="far fa-envelope"></i> Correo</a>
-        <a id="btn-github" target="_blank" class="btn btn-projects"><i class="fas fa-folder"></i> Proyectos</a>
-    </div>
-
-    <div class="admin-access">
-        <button onclick="abrirAdmin()" class="btn" style="padding: 10px; font-size: 12px; background: #64748b;">⚙️ Admin</button>
-    </div>
-
-    <div id="admin-modal">
-        <div class="modal-content">
-            <h2>Panel Profesional</h2>
-            <label>Nueva Foto:</label>
-            <input type="file" id="input-foto" accept="image/*">
-            <label>Biografía:</label>
-            <textarea id="edit-bio" rows="4"></textarea>
-            <div style="display: flex; gap: 10px;">
-                <button onclick="cerrarAdmin()" class="btn" style="background:#ef4444; flex:1">Cerrar</button>
-                <button id="btn-guardar-cambios" class="btn" style="background:#22c55e; flex:2">Guardar Todo</button>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-    <script>
-        // CONFIGURACIÓN (Tus datos reales)
-        const SUPABASE_URL = 'https://yxzmsernvdffdcdmknwa.supabase.co';
-        const SUPABASE_KEY = 'sb_publishable_SYqU4r2IPM9bR96dPKi4Fw_vMHEpRk8';
-        const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-        // 1. CARGAR DATOS
-        async function cargarInformacion() {
-            try {
-                const { data, error } = await _supabase.from('perfil').select('*').eq('id', 1).single();
-                if (error) throw error;
-                if (data) {
-                    document.getElementById('nombre-db').innerText = `Hola, soy ${data.nombre}`;
-                    document.getElementById('bio-db').innerText = data.biografia;
-                    if(data.foto_url) document.getElementById('foto-perfil').src = data.foto_url;
-                    
-                    document.getElementById('btn-wsp').href = `https://wa.me/${data.whatsapp}`;
-                    document.getElementById('btn-email').href = `mailto:${data.email}`;
-                    document.getElementById('btn-github').href = data.github;
-                    
-                    document.getElementById('edit-bio').value = data.biografia;
-                }
-            } catch (err) { console.error("Error:", err.message); }
-        }
-
-        // 2. SUBIR FOTO Y ACTUALIZAR
-        async function guardarTodo() {
-            const fileInput = document.getElementById('input-foto');
-            const bioText = document.getElementById('edit-bio').value;
-            const btn = document.getElementById('btn-guardar-cambios');
-            
-            btn.innerText = "⌛ Guardando...";
-            btn.disabled = true;
-
-            try {
-                let finalFotoUrl = null;
-
-                // Subida al bucket 'avatares.'
-                if (fileInput.files.length > 0) {
-                    const file = fileInput.files[0];
-                    const filePath = `public/${Date.now()}-${file.name}`;
-                    const { error: upErr } = await _supabase.storage.from('avatares.').upload(filePath, file);
-                    if (upErr) throw upErr;
-                    
-                    const { data } = _supabase.storage.from('avatares.').getPublicUrl(filePath);
-                    finalFotoUrl = data.publicUrl;
-                }
-
-                const updates = { biografia: bioText };
-                if (finalFotoUrl) updates.foto_url = finalFotoUrl;
-
-                const { error: dbErr } = await _supabase.from('perfil').update(updates).eq('id', 1);
-                if (dbErr) throw dbErr;
-
-                alert("¡Perfil actualizado!");
-                location.reload();
-            } catch (err) { alert("Error: " + err.message); }
-            finally { btn.innerText = "Guardar Todo"; btn.disabled = false; }
-        }
-
-        // 3. FUNCIONES DE MODAL
-        function abrirAdmin() { if (prompt("Clave:") === "1234") document.getElementById('admin-modal').style.display = 'flex'; }
-        function cerrarAdmin() { document.getElementById('admin-modal').style.display = 'none'; }
-
-        // INICIO
-        document.addEventListener('DOMContentLoaded', () => {
-            cargarInformacion();
-            document.getElementById('btn-guardar-cambios').onclick = guardarTodo;
-        });
-    </script>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Visualización de Entorno - Mario Muñoz</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #05050a; /* Fondo ultra oscuro para profundidad */
-            overflow: hidden;
-            font-family: 'Segoe UI', sans-serif;
-        }
-
-        /* Capa de degradado mimetizado */
-        .gradient-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 15% 15%, rgba(138, 43, 226, 0.2) 0%, transparent 45%),
-                radial-gradient(circle at 85% 85%, rgba(0, 119, 255, 0.2) 0%, transparent 45%);
-            z-index: 1;
-        }
-
-        /* Canvas para los gráficos mimetizados (Red de Nodos) */
-        canvas {
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 2;
-            filter: blur(1px); /* Suaviza los gráficos para mimetizarlos mejor */
-        }
-
-        /* Texto de identificación minimalista */
-        .overlay-text {
-            position: absolute;
-            bottom: 40px;
-            right: 40px;
-            color: rgba(255, 255, 255, 0.3);
-            text-align: right;
-            z-index: 3;
-            pointer-events: none;
-        }
-
-        h1 {
-            font-size: 1.5rem;
-            margin: 0;
-            letter-spacing: 5px;
-            font-weight: 300;
-        }
-
-        p {
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            margin: 5px 0 0 0;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="gradient-overlay"></div>
-    <canvas id="techCanvas"></canvas>
-
-    <div class="overlay-text">
-        <h1>MARIO MUÑOZ</h1>
-        <p>ANALISTA PROGRAMADOR // ECOTRACK SYSTEM</p>
-    </div>
-
-    <script>
-        const canvas = document.getElementById('techCanvas');
-        const ctx = canvas.getContext('2d');
-        let dots = [];
-        const dotCount = 120; // Densidad de la red
-        const connectionDist = 160;
-
-        function init() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            dots = [];
-            for (let i = 0; i < dotCount; i++) {
-                dots.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    speedX: (Math.random() - 0.5) * 0.4,
-                    speedY: (Math.random() - 0.5) * 0.4
-                });
-            }
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            for (let i = 0; i < dotCount; i++) {
-                let d = dots[i];
-                d.x += d.speedX;
-                d.y += d.speedY;
-
-                if (d.x < 0 || d.x > canvas.width) d.speedX *= -1;
-                if (d.y < 0 || d.y > canvas.height) d.speedY *= -1;
-
-                // Dibujar conexiones mimetizadas
-                for (let j = i + 1; j < dotCount; j++) {
-                    let d2 = dots[j];
-                    let dist = Math.hypot(d.x - d2.x, d.y - d2.y);
-                    
-                    if (dist < connectionDist) {
-                        let alpha = 1 - (dist / connectionDist);
-                        // Mezcla de azul y morado para las líneas
-                        ctx.strokeStyle = `rgba(138, 43, 226, ${alpha * 0.2})`;
-                        if (i % 2 === 0) ctx.strokeStyle = `rgba(0, 119, 255, ${alpha * 0.2})`;
-                        
-                        ctx.lineWidth = 0.8;
-                        ctx.beginPath();
-                        ctx.moveTo(d.x, d.y);
-                        ctx.lineTo(d2.x, d2.y);
-                        ctx.stroke();
-                    }
-                }
-            }
-            requestAnimationFrame(animate);
-        }
-
-        window.addEventListener('resize', init);
-        init();
-        animate();
-    </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Visualización Atmosférica - EcoTrack</title>
-    <style>
-        :root {
-            --bg-deep: #08080f;
-            --soft-purple: rgba(157, 78, 221, 0.1);
-            --soft-blue: rgba(72, 202, 228, 0.1);
-        }
-
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--bg-deep);
-            font-family: 'Segoe UI', sans-serif;
-            overflow: hidden;
-            perspective: 1500px; 
-        }
-
-        /* Iluminación ambiental mimetizada */
-        .ambient-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 20%, var(--soft-purple) 0%, transparent 60%),
-                radial-gradient(circle at 80% 80%, var(--soft-blue) 0%, transparent 60%);
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        /* Canvas con efecto 3D pronunciado */
-        #techCanvas {
-            position: fixed;
-            top: -15%;
-            left: -15%;
-            width: 130%;
-            height: 130%;
-            z-index: 2;
-            opacity: 0.6;
-            transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        .main-container {
-            position: relative;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            gap: 20px;
-        }
-
-        /* Botones minimalistas y elevados */
-        .nav-link {
-            background: rgba(255, 255, 255, 0.01);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            color: rgba(255, 255, 255, 0.5);
-            padding: 18px 60px;
-            width: 250px;
-            text-align: center;
-            border-radius: 1px;
-            font-size: 0.8rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            backdrop-filter: blur(5px);
-            cursor: pointer;
-        }
-
-        .nav-link:hover {
-            transform: translateY(-15px) translateZ(60px);
-            background: rgba(255, 255, 255, 0.03);
-            border-color: rgba(72, 202, 228, 0.2);
-            color: #ffffff;
-            letter-spacing: 6px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Identificación en lado derecho inferior únicamente */
-        .footer-id {
-            position: absolute;
-            bottom: 40px;
-            right: 50px;
-            text-align: right;
-            z-index: 15;
-            pointer-events: none;
-            opacity: 0.4;
-        }
-
-        .footer-id h2 {
-            font-size: 1rem;
-            font-weight: 200;
-            letter-spacing: 5px;
-            margin: 0;
-            color: #fff;
-            text-transform: uppercase;
-        }
-
-        .footer-id p {
-            font-size: 0.6rem;
-            letter-spacing: 3px;
-            color: var(--soft-blue);
-            margin: 5px 0 0 0;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="ambient-glow"></div>
-    <canvas id="techCanvas"></canvas>
-
-    <div class="main-container">
-        <div class="nav-link">EcoTrack System</div>
-        <div class="nav-link">TicketBeat 247</div>
-        <div class="nav-link">Arquitectura Admin</div>
-    </div>
-
-    <div class="footer-id">
-        <h2>MARIO MUÑOZ</h2>
-        <p>SYSTEM ANALYST // 2026</p>
-    </div>
-
-    <script>
-        const canvas = document.getElementById('techCanvas');
-        const ctx = canvas.getContext('2d');
-        let points = [];
-        
-        function init() {
-            canvas.width = window.innerWidth * 1.3;
-            canvas.height = window.innerHeight * 1.3;
-            points = [];
-            for (let i = 0; i < 130; i++) {
-                points.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    z: Math.random() * 80 + 20, 
-                    vx: (Math.random() - 0.5) * 0.15,
-                    vy: (Math.random() - 0.5) * 0.15
-                });
-            }
-        }
-
-        window.addEventListener('mousemove', (e) => {
-            const rotX = (e.clientY - window.innerHeight / 2) / 40;
-            const rotY = (e.clientX - window.innerWidth / 2) / 40;
-            
-            canvas.style.transform = `rotateX(${-rotX}deg) rotateY(${rotY}deg) translateZ(0px)`;
-        });
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            points.forEach((p, i) => {
-                p.x += p.vx;
-                p.y += p.vy;
-
-                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-
-                const brightness = (p.z / 100) * 0.4;
-                ctx.fillStyle = `rgba(255, 255, 255, ${brightness})`;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.z / 50, 0, Math.PI * 2);
-                ctx.fill();
-
-                for (let j = i + 1; j < points.length; j++) {
-                    let p2 = points[j];
-                    let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-                    if (dist < 200) {
-                        const alpha = (1 - dist / 200) * 0.12;
-                        ctx.strokeStyle = i % 3 === 0 ? 
-                            `rgba(157, 78, 221, ${alpha})` : 
-                            `rgba(72, 202, 228, ${alpha})`;
-                        
-                        ctx.lineWidth = 0.4;
-                        ctx.beginPath();
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        ctx.stroke();
-                    }
-                }
-            });
-            requestAnimationFrame(animate);
-        }
-
-        window.addEventListener('resize', init);
-        init();
-        animate();
-    </script>
-</body>
-</html>
-
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Visualización Atmosférica - EcoTrack</title>
-    <style>
-        :root {
-            --bg-deep: #08080f;
-            --soft-purple: rgba(157, 78, 221, 0.1);
-            --soft-blue: rgba(72, 202, 228, 0.1);
-        }
-
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--bg-deep);
-            font-family: 'Segoe UI', sans-serif;
-            overflow: hidden;
-            perspective: 1500px; 
-        }
-
-        /* Iluminación ambiental mimetizada */
-        .ambient-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 20%, var(--soft-purple) 0%, transparent 60%),
-                radial-gradient(circle at 80% 80%, var(--soft-blue) 0%, transparent 60%);
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        /* Canvas con efecto 3D pronunciado */
-        #techCanvas {
-            position: fixed;
-            top: -15%;
-            left: -15%;
-            width: 130%;
-            height: 130%;
-            z-index: 2;
-            opacity: 0.6;
-            transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        .main-container {
-            position: relative;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            gap: 20px;
-        }
-
-        /* Botones minimalistas y elevados */
-        .nav-link {
-            background: rgba(255, 255, 255, 0.01);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            color: rgba(255, 255, 255, 0.5);
-            padding: 18px 60px;
-            width: 250px;
-            text-align: center;
-            border-radius: 1px;
-            font-size: 0.8rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            backdrop-filter: blur(5px);
-            cursor: pointer;
-        }
-
-        .nav-link:hover {
-            transform: translateY(-15px) translateZ(60px);
-            background: rgba(255, 255, 255, 0.03);
-            border-color: rgba(72, 202, 228, 0.2);
-            color: #ffffff;
-            letter-spacing: 6px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Identificación en lado derecho inferior únicamente */
-        .footer-id {
-            position: absolute;
-            bottom: 40px;
-            right: 50px;
-            text-align: right;
-            z-index: 15;
-            pointer-events: none;
-            opacity: 0.4;
-        }
-
-        .footer-id h2 {
-            font-size: 1rem;
-            font-weight: 200;
-            letter-spacing: 5px;
-            margin: 0;
-            color: #fff;
-            text-transform: uppercase;
-        }
-
-        .footer-id p {
-            font-size: 0.6rem;
-            letter-spacing: 3px;
-            color: var(--soft-blue);
-            margin: 5px 0 0 0;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="ambient-glow"></div>
-    <canvas id="techCanvas"></canvas>
-
-    <div class="main-container">
-        <div class="nav-link">EcoTrack System</div>
-        <div class="nav-link">TicketBeat 247</div>
-        <div class="nav-link">Arquitectura Admin</div>
-    </div>
-
-    <div class="footer-id">
-        <h2>MARIO MUÑOZ</h2>
-        <p>SYSTEM ANALYST // 2026</p>
-    </div>
-
-    <script>
-        const canvas = document.getElementById('techCanvas');
-        const ctx = canvas.getContext('2d');
-        let points = [];
-        
-        function init() {
-            canvas.width = window.innerWidth * 1.3;
-            canvas.height = window.innerHeight * 1.3;
-            points = [];
-            for (let i = 0; i < 130; i++) {
-                points.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    z: Math.random() * 80 + 20, 
-                    vx: (Math.random() - 0.5) * 0.15,
-                    vy: (Math.random() - 0.5) * 0.15
-                });
-            }
-        }
-
-        window.addEventListener('mousemove', (e) => {
-            const rotX = (e.clientY - window.innerHeight / 2) / 40;
-            const rotY = (e.clientX - window.innerWidth / 2) / 40;
-            
-            canvas.style.transform = `rotateX(${-rotX}deg) rotateY(${rotY}deg) translateZ(0px)`;
-        });
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            points.forEach((p, i) => {
-                p.x += p.vx;
-                p.y += p.vy;
-
-                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-
-                const brightness = (p.z / 100) * 0.4;
-                ctx.fillStyle = `rgba(255, 255, 255, ${brightness})`;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.z / 50, 0, Math.PI * 2);
-                ctx.fill();
-
-                for (let j = i + 1; j < points.length; j++) {
-                    let p2 = points[j];
-                    let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-                    if (dist < 200) {
-                        const alpha = (1 - dist / 200) * 0.12;
-                        ctx.strokeStyle = i % 3 === 0 ? 
-                            `rgba(157, 78, 221, ${alpha})` : 
-                            `rgba(72, 202, 228, ${alpha})`;
-                        
-                        ctx.lineWidth = 0.4;
-                        ctx.beginPath();
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        ctx.stroke();
-                    }
-                }
-            });
-            requestAnimationFrame(animate);
-        }
-
-        window.addEventListener('resize', init);
-        init();
-        animate();
     </script>
 </body>
 </html>
