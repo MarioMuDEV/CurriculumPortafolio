@@ -644,12 +644,12 @@ h3 {
 ========================= */
 
 .whatsapp-float {
-    position* fixed;
+    position: fixed;
     right: 22px;
-    botto*: 22px;
+    bottom: 22px;
     width: 58px;
-    heigh*: 58px;
-    background: #25d366;
+    height: 58px;
+    background: #22c55e;
     color: #ffffff;
     border-radius: 50%;
     display: flex;
@@ -657,15 +657,15 @@ h3 {
     justify-content: center;
     text-decoration: none;
     font-size: 1.8rem;
-    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.35);
+    box-shadow: 0 10px 25px rgba(34, 197, 94, 0.35);
     z-index: 999;
     transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .whatsapp-float:hover {
-    background: #1ebe5d;
+    background: #16a34a;
     transform: translateY(-4px) scale(1.04);
-    box-shadow: 0 14px 32px rgba(37, 211, 102, 0.45);
+    box-shadow: 0 14px 32px rgba(34, 197, 94, 0.45);
 }
 
 /* Responsive WhatsApp */
