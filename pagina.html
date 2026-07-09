@@ -2,7 +2,9 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Mario Muñoz | Desarrollador Web y Analista TI</title>
 
     <meta 
@@ -11,6 +13,7 @@
     >
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link 
@@ -21,313 +24,38 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     >
 
-    <style>
-        :root {
-            --primary: #0f172a;
-            --accent: #0891b2;
-            --accent-dim: #cffafe;
-            --tag-text: #0891b2;
-            --wsp: #25d366;
-            --dark-btn: #1e293b;
-            --muted-btn: #4b5563;
-            --bg: #f8fafc;
-            --muted: #64748b;
-            --border: #e2e8f0;
-            --white: #ffffff;
-        }
-
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'DM Sans', sans-serif;
-            line-height: 1.6;
-            color: var(--primary);
-            margin: 0;
-            padding: 0;
-            background: var(--bg);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        img {
-            max-width: 100%;
-            display: block;
-        }
-
-        nav {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            background: var(--white);
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav-inner {
-            width: min(100%, 1200px);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 18px 40px;
-        }
-
-        .logo {
-            font-family: 'DM Serif Display', serif;
-            font-size: 1.5rem;
-            color: var(--primary);
-            letter-spacing: -0.5px;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 28px;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--muted);
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: color 0.2s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        .hero {
-            width: min(100%, 1100px);
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 70px 20px 40px;
-            text-align: center;
-        }
-
-        .profile-img {
-            width: clamp(130px, 30vw, 170px);
-            height: clamp(130px, 30vw, 170px);
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--white);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-            transition: transform 0.3s ease;
-        }
-
-        .profile-img:hover {
-            transform: scale(1.04);
-        }
-
-        h1 {
-            font-family: 'DM Serif Display', serif;
-            font-size: clamp(2.1rem, 7vw, 3.4rem);
-            line-height: 1.1;
-            margin: 24px 0 8px;
-            color: var(--primary);
-            letter-spacing: -1px;
-        }
-
-        h3 {
-            font-size: clamp(1rem, 3vw, 1.18rem);
-            color: var(--accent);
-            font-weight: 600;
-            margin: 0 0 18px;
-            letter-spacing: 0.3px;
-        }
-
-        .bio {
-            max-width: 700px;
-            color: #475569;
-            margin: 0 0 34px;
-            font-size: 1rem;
-            line-height: 1.8;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 12px;
-            max-width: 620px;
-            width: 100%;
-            margin-bottom: 36px;
-        }
-
-        .skill-tag {
-            background: var(--accent-dim);
-            color: var(--tag-text);
-            padding: 10px 16px;
-            border-radius: 999px;
-            font-weight: 700;
-            font-size: 0.88rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .skill-tag:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(8,145,178,0.2);
-        }
-
-        .button-bar {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 40px;
-        }
-
-        .btn {
-            text-decoration: none;
-            color: white;
-            padding: 13px 26px;
-            border-radius: 999px;
-            font-weight: 700;
-            font-size: 0.92rem;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 9px;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.18);
-        }
-
-        .btn-wsp {
-            background: var(--wsp);
-        }
-
-        .btn-email {
-            background: var(--dark-btn);
-        }
-
-        .btn-projects {
-            background: var(--muted-btn);
-        }
-
-        .section-placeholder {
-            width: min(100%, 900px);
-            margin: 0 auto 50px;
-            padding: 0 20px;
-            text-align: center;
-        }
-
-        .section-card {
-            background: var(--white);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 28px;
-            box-shadow: 0 12px 35px rgba(15, 23, 42, 0.06);
-        }
-
-        .section-card h2 {
-            font-family: 'DM Serif Display', serif;
-            font-size: clamp(1.7rem, 4vw, 2.3rem);
-            margin: 0 0 10px;
-        }
-
-        .section-card p {
-            color: var(--muted);
-            margin: 0;
-        }
-
-        @media (max-width: 768px) {
-            .nav-inner {
-                padding: 16px 20px;
-                flex-direction: column;
-                gap: 12px;
-            }
-
-            .nav-links {
-                width: 100%;
-                justify-content: center;
-                gap: 18px;
-                flex-wrap: wrap;
-            }
-
-            .hero {
-                padding: 45px 18px 30px;
-            }
-
-            .bio {
-                font-size: 0.98rem;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-                max-width: 420px;
-            }
-
-            .button-bar {
-                width: 100%;
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .btn {
-                width: 100%;
-            }
-        }
-
-        @media (max-width: 420px) {
-            .nav-links a {
-                font-size: 0.85rem;
-            }
-
-            .hero {
-                padding-top: 35px;
-            }
-
-            .skill-tag {
-                font-size: 0.85rem;
-                padding: 10px 12px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="base.css">
 </head>
 
 <body>
 
-    <nav>
+    <!-- Navbar -->
+    <nav class="navbar">
         <div class="nav-inner">
             #inicioMM</a>
 
             <ul class="nav-links">
-                <li>#inicioInicio</a></li>
-                <li>#experienciaExperiencia</a></li>
-                <li>#proyectosProyectos</a></li>
+                <li>
+                    #inicioInicio</a>
+                </li>
+
+                <li>
+                    #experienciaExperiencia</a>
+                </li>
+
+                <li>
+                    proyectos.htmlProyectos</a>
+                </li>
             </ul>
         </div>
     </nav>
 
+    <!-- Contenido principal -->
     <main>
+
+        <!-- Hero -->
         <section class="hero" id="inicio">
-            <img
-                id="foto-perfil"
-                src="https://mariomudev.github.io/CurriculumPortafolio/foto_curriculum.jpg"
-                alt="Foto de perfil de Mario Alejandro Muñoz Mena"
-                class="profile-img"
-            >
+            foto_curriculum.jpg
 
             <h1 id="nombre-db">Hola, soy Mario</h1>
 
@@ -342,8 +70,8 @@
 
             <div class="skills-grid">
                 <div class="skill-tag">
-                    <i class="fas fa-project-diagram"></i>
-                    Modelado UML
+                    <i class="fas fa-code"></i>
+                    Desarrollo Web
                 </div>
 
                 <div class="skill-tag">
@@ -352,8 +80,18 @@
                 </div>
 
                 <div class="skill-tag">
+                    <i class="fas fa-project-diagram"></i>
+                    Modelado UML
+                </div>
+
+                <div class="skill-tag">
                     <i class="fas fa-chart-line"></i>
                     Análisis de Requerimientos
+                </div>
+
+                <div class="skill-tag">
+                    <i class="fab fa-js"></i>
+                    JavaScript
                 </div>
 
                 <div class="skill-tag">
@@ -363,97 +101,156 @@
             </div>
 
             <div class="button-bar">
-                <a id="btn-wsp" target="_blank" rel="noopener noreferrer" class="btn btn-wsp">
+                #
                     <i class="fab fa-whatsapp"></i>
                     WhatsApp
                 </a>
 
-                <a id="btn-email" class="btn btn-email">
+                #
                     <i class="far fa-envelope"></i>
                     Correo
                 </a>
 
-                <a id="btn-github" target="_blank" rel="noopener noreferrer" class="btn btn-projects">
+                <a 
+                    id="btn-github" 
+                    href="https://github.com/MarioMuDEV/">
                     <i class="fab fa-github"></i>
-                    Proyectos
+                    GitHub
                 </a>
             </div>
         </section>
 
-        <section class="section-placeholder" id="experiencia">
+        <!-- Sobre mí -->
+        <section class="content-section" id="experiencia">
             <div class="section-card">
-                <h2>Experiencia</h2>
+                <span class="section-label">Perfil profesional</span>
+
+                <h2>Sobre mí</h2>
+
                 <p>
-                    Aquí agregaremos tu experiencia, formación, prácticas, tecnologías y logros principales.
+                    Soy desarrollador web junior y analista TI en formación. Me enfoco en crear soluciones
+                    digitales claras, funcionales y adaptables, aplicando conocimientos de desarrollo web,
+                    bases de datos, análisis de requerimientos y documentación de sistemas.
                 </p>
             </div>
         </section>
 
-        <section class="section-placeholder" id="proyectos">
+        <!-- Áreas de conocimiento -->
+        <section class="content-section">
             <div class="section-card">
-                <h2>Proyectos</h2>
-                <p>
-                    Aquí agregaremos tus proyectos principales con enlaces a GitHub o demos públicas.
-                </p>
+                <span class="section-label">Experiencia y formación</span>
+
+                <h2>Áreas de conocimiento</h2>
+
+                <div class="info-grid">
+                    <article class="info-box">
+                        <i class="fas fa-laptop-code"></i>
+
+                        <h4>Desarrollo Web</h4>
+
+                        <p>
+                            Creación de interfaces web usando HTML, CSS, JavaScript y buenas prácticas
+                            de diseño responsive para celulares y escritorio.
+                        </p>
+                    </article>
+
+                    <article class="info-box">
+                        <i class="fas fa-database"></i>
+
+                        <h4>Bases de Datos</h4>
+
+                        <p>
+                            Manejo de conceptos SQL, organización de información, consultas y modelado
+                            básico de datos para sistemas.
+                        </p>
+                    </article>
+
+                    <article class="info-box">
+                        <i class="fas fa-sitemap"></i>
+
+                        <h4>Análisis de Sistemas</h4>
+
+                        <p>
+                            Levantamiento de requerimientos, modelado UML, documentación funcional
+                            y planificación de soluciones tecnológicas.
+                        </p>
+                    </article>
+                </div>
             </div>
         </section>
+
+        <!-- Proyectos -->
+        <section class="content-section" id="proyectos">
+            <div class="section-card text-center">
+                <span class="section-label">Portafolio</span>
+
+                <h2>Proyectos</h2>
+
+                <p>
+                    Revisa algunos de mis proyectos principales, sistemas web y avances de desarrollo.
+                </p>
+
+                proyectos.html
+                    <i class="fas fa-folder-open"></i>
+                    Ver proyectos
+                </a>
+            </div>
+        </section>
+
     </main>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <p>
+            © 2026 Mario Alejandro Muñoz Mena. Currículum digital y portafolio.
+        </p>
+    </footer>
+
+    <!-- Acceso admin flotante -->
+    <div class="admin-access no-print">
+        <button onclick="abrirAdmin()" class="btn btn-admin">
+            ⚙️ Admin
+        </button>
+    </div>
+
+    <!-- Modal admin -->
+    <div id="admin-modal">
+        <div class="modal-content">
+            <h2>Panel de Control</h2>
+
+            <label for="file-input">Foto de perfil:</label>
+
+            foto_curriculum.jpg
+
+            <input 
+                type="file" 
+                id="file-input" 
+                accept="image/*"
+            >
+
+            <label for="edit-bio">Biografía:</label>
+
+            <textarea 
+                id="edit-bio" 
+                rows="4" 
+                placeholder="Escribe tu biografía profesional..."
+            ></textarea>
+
+            <div class="modal-actions">
+                <button onclick="cerrarAdmin()" class="btn btn-danger">
+                    Cancelar
+                </button>
+
+                <button id="btn-guardar-todo" onclick="guardarTodo()" class="btn btn-success">
+                    Guardar cambios
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     base.jsscript>
-
-    <script>
-        const SUPABASE_URL = 'TU_SUPABASE_URL';
-        const SUPABASE_KEY = 'TU_SUPABASE_KEY';
-
-        const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-        async function cargarInformacion() {
-            try {
-                const { data, error } = await db
-                    .from('perfil')
-                    .select('*')
-                    .eq('id', 1)
-                    .single();
-
-                if (error) throw error;
-                if (!data) return;
-
-                if (data.nombre) {
-                    document.getElementById('nombre-db').textContent = `Hola, soy ${data.nombre}`;
-                }
-
-                if (data.titulo) {
-                    document.getElementById('titulo-db').textContent = data.titulo;
-                }
-
-                if (data.biografia) {
-                    document.getElementById('bio-db').textContent = data.biografia;
-                }
-
-                if (data.foto_url) {
-                    document.getElementById('foto-perfil').src = data.foto_url;
-                }
-
-                if (data.whatsapp) {
-                    document.getElementById('btn-wsp').href = `https://wa.me/${data.whatsapp}`;
-                }
-
-                if (data.email) {
-                    document.getElementById('btn-email').href = `mailto:${data.email}`;
-                }
-
-                if (data.github) {
-                    document.getElementById('btn-github').href = data.github;
-                }
-
-            } catch (err) {
-                console.error('Error cargando perfil:', err.message);
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', cargarInformacion);
-    </script>
 
 </body>
 </html>
