@@ -1,110 +1,135 @@
-<style>
-    /* Botón Admin Flotante */
-    .admin-access { position: fixed; bottom: 20px; left: 20px; opacity: 0.3; transition: 0.3s; z-index: 1000; }
-    .admin-access:hover { opacity: 1; }
+/* =========================
+   Admin flotante
+========================= */
 
-    /* Modal de Administración */
-    #admin-modal {
-        display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center;
+.admin-access {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.admin-access:hover {
+    opacity: 1;
+}
+
+.btn-admin {
+    padding: 10px 14px;
+    font-size: 12px;
+    background: #64748b;
+}
+
+/* =========================
+   Modal de administración
+========================= */
+
+#admin-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.82);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#admin-modal.open {
+    display: flex;
+}
+
+.modal-content {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 18px;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+}
+
+.modal-content h2 {
+    margin: 0 0 6px;
+    font-family: 'DM Serif Display', serif;
+    color: var(--primary);
+    font-size: 1.7rem;
+}
+
+.modal-content label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--muted);
+}
+
+.modal-content input,
+.modal-content textarea {
+    padding: 11px 13px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    outline: none;
+}
+
+.modal-content input:focus,
+.modal-content textarea:focus {
+    border-color: var(--accent);
+}
+
+#preview-img {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 8px auto;
+    display: block;
+    border: 3px solid var(--accent);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.btn-danger {
+    background: #ef4444;
+    flex: 1;
+}
+
+.btn-success {
+    background: #22c55e;
+    flex: 2;
+}
+
+/* =========================
+   Responsive admin
+========================= */
+
+@media (max-width: 520px) {
+    .admin-access {
+        left: 14px;
+        bottom: 14px;
     }
+
     .modal-content {
-        background: white; padding: 30px; border-radius: 15px; width: 90%; max-width: 500px;
-        display: flex; flex-direction: column; gap: 15px;
-    }
-    .modal-content input, .modal-content textarea { padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
-    
-    /* Previsualización de imagen */
-    #preview-img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin: 10px auto; display: block; border: 2px solid var(--accent); }
-</style>
-
-<div class="admin-access no-print">
-    <button onclick="abrirAdmin()" class="btn" style="padding: 10px; font-size: 12px; background: #64748b;">⚙️ Acceso Admin</button>
-</div>
-
-<div id="admin-modal">
-    <div class="modal-content">
-        <h2>Panel de Control Profesional</h2>
-        <label>Foto de Perfil:</label>
-        <img id="preview-img" src="https://via.placeholder.com/150" alt="Vista previa">
-        <input type="file" id="file-input" accept="image/*">
-        
-        <label>Biografía:</label>
-        <textarea id="edit-bio" rows="4"></textarea>
-        
-        <div style="display: flex; gap: 10px;">
-            <button onclick="cerrarAdmin()" class="btn" style="background:#ef4444; flex:1">Cancelar</button>
-            <button id="btn-guardar-todo" onclick="guardarTodo()" class="btn" style="background:#22c55e; flex:2">Guardar Cambios</button>
-        </div>
-    </div>
-</div>
-
-<script>
-    // Configuración de Supabase (Ya la tienes arriba, asegúrate de que sea la misma)
-    const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-    function abrirAdmin() {
-        const pass = prompt("Ingresa tu clave de administrador:");
-        if (pass === "1234") { // Usa una clave segura después
-            document.getElementById('admin-modal').style.display = 'flex';
-        } else {
-            alert("Acceso denegado");
-        }
+        padding: 22px;
+        border-radius: 16px;
     }
 
-    function cerrarAdmin() { document.getElementById('admin-modal').style.display = 'none'; }
-
-    async function guardarTodo() {
-        const btn = document.getElementById('btn-guardar-todo');
-        const fileInput = document.getElementById('file-input');
-        const bioText = document.getElementById('edit-bio').value;
-        
-        btn.innerText = "⌛ Procesando...";
-        btn.disabled = true;
-
-        try {
-            let fotoUrl = null;
-
-            // 1. Subir imagen al Storage si hay un archivo seleccionado
-            if (fileInput.files.length > 0) {
-                const file = fileInput.files[0];
-                const fileExt = file.name.split('.').pop();
-                const fileName = `perfil-${Math.random()}.${fileExt}`;
-                const filePath = `${fileName}`;
-
-                const { error: uploadError } = await _supabase.storage
-                    .from('avatars')
-                    .upload(filePath, file);
-
-                if (uploadError) throw uploadError;
-
-                // Obtener URL pública
-                const { data } = _supabase.storage.from('avatars').getPublicUrl(filePath);
-                fotoUrl = data.publicUrl;
-            }
-
-            // 2. Actualizar Base de Datos SQL
-            const updates = { biografia: bioText };
-            if (fotoUrl) {
-                // Necesitarás agregar una columna 'foto_url' a tu tabla 'perfil' en Supabase SQL
-                updates.foto_url = fotoUrl; 
-            }
-
-            const { error: dbError } = await _supabase
-                .from('perfil')
-                .update(updates)
-                .eq('id', 1);
-
-            if (dbError) throw dbError;
-
-            alert("¡Perfil actualizado con éxito!");
-            location.reload(); // Recargar para ver los cambios
-
-        } catch (error) {
-            alert("Error: " + error.message);
-        } finally {
-            btn.innerText = "Guardar Cambios";
-            btn.disabled = false;
-        }
+    .modal-actions {
+        flex-direction: column;
     }
-</script>
+
+    .btn-danger,
+    .btn-success {
+        flex: initial;
+        width: 100%;
+    }
+}
