@@ -679,3 +679,10 @@ h3 {
     }
 }
 `*
+.btn-download {
+    background: #2563eb;
+}
+
+.btn-download:hover {
+    background: #1d4ed8;
+}
