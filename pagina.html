@@ -212,48 +212,6 @@
         </p>
     </footer>
 
-    <!-- Acceso admin flotante -->
-    <div class="admin-access no-print">
-        <button onclick="abrirAdmin()" class="btn btn-admin">
-            ⚙️ Admin
-        </button>
-    </div>
-
-    <!-- Modal admin -->
-    <div id="admin-modal">
-        <div class="modal-content">
-            <h2>Panel de Control</h2>
-
-            <label for="file-input">Foto de perfil:</label>
-
-            ./foto_curriculum.jpg
-
-            <input 
-                type="file" 
-                id="file-input" 
-                accept="image/*"
-            >
-
-            <label for="edit-bio">Biografía:</label>
-
-            <textarea 
-                id="edit-bio" 
-                rows="4" 
-                placeholder="Escribe tu biografía profesional..."
-            ></textarea>
-
-            <div class="modal-actions">
-                <button onclick="cerrarAdmin()" class="btn btn-danger">
-                    Cancelar
-                </button>
-
-                <button id="btn-guardar-todo" onclick="guardarTodo()" class="btn btn-success">
-                    Guardar cambios
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     base.jsscript>
