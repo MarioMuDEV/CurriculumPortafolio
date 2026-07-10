@@ -1,20 +1,57 @@
 /* =========================
-   Variables generales
+   Fuentes
+========================= */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700;800&display=swap');
+
+/* =========================
+   Variables — paleta oscura
+   con degradados azul/morado
 ========================= */
 
 :root {
-    --primary: #0f172a;
-    --accent: #0891b2;
-    --accent-dim: #cffafe;
-    --tag-text: #0891b2;
-    --wsp: #25d366;
-    --dark-btn: #1e293b;
-    --muted-btn: #4b5563;
-    --bg: #f8fafc;
-    --muted: #64748b;
-    --border: #e2e8f0;
-    --white: #ffffff;
-    --shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
+    /* Fondo y superficies */
+    --bg:            #111128;
+    --bg-card:       rgba(255, 255, 255, 0.04);
+    --bg-card-hover: rgba(255, 255, 255, 0.07);
+    --surface:       rgba(255, 255, 255, 0.06);
+
+    /* Tipografía */
+    --primary:       #f1f5f9;
+    --secondary:     #94a3b8;
+    --muted:         #64748b;
+    --white:         #ffffff;
+
+    /* Degradados principales */
+    --grad-main:     linear-gradient(135deg, #0891b2 0%, #7c3aed 100%);
+    --grad-soft:     linear-gradient(135deg, rgba(8,145,178,0.15) 0%, rgba(124,58,237,0.15) 100%);
+    --grad-border:   linear-gradient(135deg, rgba(8,145,178,0.4), rgba(124,58,237,0.4));
+    --grad-text:     linear-gradient(135deg, #38bdf8 0%, #a78bfa 100%);
+    --grad-hero-bg:  radial-gradient(ellipse at 20% 20%, rgba(124,58,237,0.12) 0%, transparent 60%),
+                     radial-gradient(ellipse at 80% 80%, rgba(8,145,178,0.10) 0%, transparent 60%);
+
+    /* Acento */
+    --accent:        #38bdf8;
+    --accent-warm:   #a78bfa;
+    --accent-dim:    rgba(56, 189, 248, 0.12);
+    --tag-text:      #38bdf8;
+
+    /* Botones */
+    --wsp:           #25d366;
+    --border:        rgba(255, 255, 255, 0.08);
+    --border-strong: rgba(255, 255, 255, 0.14);
+
+    /* Sombras */
+    --shadow-sm:     0 2px 12px rgba(0, 0, 0, 0.3);
+    --shadow-md:     0 8px 32px rgba(0, 0, 0, 0.4);
+    --shadow-lg:     0 20px 60px rgba(0, 0, 0, 0.5);
+    --shadow-glow:   0 0 30px rgba(124, 58, 237, 0.25);
+
+    /* Radios */
+    --radius-sm:     12px;
+    --radius-md:     20px;
+    --radius-lg:     28px;
+    --radius-pill:   999px;
 }
 
 /* =========================
@@ -38,6 +75,8 @@ body {
     margin: 0;
     padding: 0;
     background: var(--bg);
+    background-image: var(--grad-hero-bg);
+    background-attachment: fixed;
     min-height: 100vh;
     overflow-x: hidden;
 }
@@ -49,22 +88,25 @@ img {
 
 a {
     color: inherit;
+    text-decoration: none;
 }
 
 /* =========================
-   Navbar
+   Navbar — glassmorphism
 ========================= */
 
 .navbar {
     width: 100%;
     display: flex;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.92);
-    border-bottom: 1px solid var(--border);
+    background: rgba(17, 17, 40, 0.85);
+    border-bottom: 1px solid var(--border-strong);
     position: sticky;
     top: 0;
     z-index: 100;
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.04) inset, var(--shadow-sm);
 }
 
 .nav-inner {
@@ -75,11 +117,15 @@ a {
     padding: 18px 40px;
 }
 
+/* Logo con degradado */
 .logo {
     font-family: 'DM Serif Display', serif;
     font-size: 1.6rem;
-    color: var(--primary);
     letter-spacing: -0.5px;
+    background: var(--grad-main);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     text-decoration: none;
 }
 
@@ -92,15 +138,33 @@ a {
 }
 
 .nav-links a {
-    text-decoration: none;
-    color: var(--muted);
-    font-weight: 700;
-    font-size: 0.9rem;
+    color: var(--secondary);
+    font-weight: 600;
+    font-size: 0.875rem;
     transition: color 0.2s ease;
+    position: relative;
+    padding-bottom: 2px;
+}
+
+/* Subrayado degradado animado */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--grad-main);
+    border-radius: 2px;
+    transition: width 0.25s ease;
 }
 
 .nav-links a:hover {
     color: var(--accent);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 /* =========================
@@ -113,22 +177,76 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 70px 20px 48px;
+    padding: 72px 20px 52px;
     text-align: center;
 }
 
+/* Foto con halo degradado */
+.profile-img-wrap {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+.profile-img-wrap::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    background: var(--grad-main);
+    opacity: 0.3;
+    filter: blur(10px);
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.profile-img-wrap:hover::before {
+    opacity: 0.6;
+}
+
 .profile-img {
-    width: clamp(135px, 30vw, 175px);
-    height: clamp(135px, 30vw, 175px);
+    position: relative;
+    z-index: 1;
+    width: clamp(130px, 28vw, 170px);
+    height: clamp(130px, 28vw, 170px);
     border-radius: 50%;
     object-fit: cover;
-    border: 4px solid var(--white);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    /* Borde degradado via box-shadow */
+    border: 3px solid transparent;
+    background-clip: padding-box;
+    box-shadow:
+        0 0 0 3px rgba(56, 189, 248, 0.3),
+        var(--shadow-md);
     transition: transform 0.3s ease;
 }
 
 .profile-img:hover {
-    transform: scale(1.04);
+    transform: scale(1.05);
+}
+
+/* Saludo */
+.saludo {
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+    letter-spacing: 0.3px;
+}
+
+/* Nombre con degradado */
+#nombre-db {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.8rem, 9vw, 5rem);
+    line-height: 1;
+    margin: 0 0 10px;
+    background: linear-gradient(135deg, #f1f5f9 0%, #c4b5fd 60%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -2px;
 }
 
 h1 {
@@ -148,52 +266,66 @@ h2 {
     color: var(--primary);
 }
 
+/* Título — degradado cian/morado */
 h3 {
-    font-size: clamp(1rem, 3vw, 1.18rem);
-    color: var(--accent);
-    font-weight: 700;
-    margin: 0 0 18px;
-    letter-spacing: 0.3px;
+    font-size: clamp(0.95rem, 3vw, 1.1rem);
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 600;
+    margin: 0 0 20px;
+    letter-spacing: 0.5px;
 }
 
 .bio {
-    max-width: 730px;
-    color: #475569;
-    margin: 0 0 34px;
-    font-size: 1.02rem;
+    max-width: 680px;
+    color: var(--secondary);
+    margin: 0 0 36px;
+    font-size: 1rem;
     line-height: 1.8;
 }
 
 /* =========================
-   Skills
+   Skills tags
 ========================= */
 
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-    max-width: 680px;
+    gap: 10px;
+    max-width: 640px;
     width: 100%;
     margin-bottom: 36px;
 }
 
 .skill-tag {
-    background: var(--accent-dim);
-    color: var(--tag-text);
+    background: var(--grad-soft);
+    color: var(--accent);
     padding: 10px 16px;
-    border-radius: 999px;
-    font-weight: 800;
-    font-size: 0.88rem;
+    border-radius: var(--radius-pill);
+    font-weight: 700;
+    font-size: 0.85rem;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.skill-tag i {
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .skill-tag:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(8, 145, 178, 0.2);
+    transform: translateY(-3px);
+    background: linear-gradient(135deg, rgba(8,145,178,0.25), rgba(124,58,237,0.25));
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.25);
+    border-color: rgba(167, 139, 250, 0.4);
 }
 
 /* =========================
@@ -210,35 +342,55 @@ h3 {
 
 .btn {
     text-decoration: none;
-    color: white;
+    color: var(--white);
     padding: 13px 26px;
-    border-radius: 999px;
-    font-weight: 800;
-    font-size: 0.92rem;
+    border-radius: var(--radius-pill);
+    font-weight: 700;
+    font-size: 0.9rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 9px;
     border: none;
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0);
+    transition: background 0.2s ease;
 }
 
 .btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+    box-shadow: var(--shadow-lg);
+    filter: brightness(1.1);
+}
+
+.btn:active {
+    transform: translateY(-1px);
 }
 
 .btn-wsp {
-    background: var(--wsp);
+    background: linear-gradient(135deg, #25d366, #16a34a);
 }
 
 .btn-email {
-    background: var(--dark-btn);
+    background: linear-gradient(135deg, #1e1b4b, #4c1d95);
 }
 
 .btn-projects {
-    background: var(--muted-btn);
+    background: linear-gradient(135deg, #0891b2, #1d4ed8);
+}
+
+.btn-download {
+    background: linear-gradient(135deg, #0f172a, #1e1b4b);
+    border: 1px solid var(--border-strong);
 }
 
 .btn-center {
@@ -251,63 +403,101 @@ h3 {
 
 .content-section {
     width: min(100%, 980px);
-    margin: 0 auto 36px;
+    margin: 0 auto 32px;
     padding: 0 20px;
 }
 
+/* Card con borde degradado */
 .section-card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 26px;
-    padding: 34px;
-    box-shadow: var(--shadow);
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    padding: 36px;
+    box-shadow: var(--shadow-md);
+    backdrop-filter: blur(12px);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Brillo sutil en esquina superior */
+.section-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(56,189,248,0.4), rgba(167,139,250,0.4), transparent);
+}
+
+.section-card:hover {
+    border-color: rgba(167, 139, 250, 0.25);
+    box-shadow: var(--shadow-glow);
 }
 
 .section-card p {
-    color: var(--muted);
+    color: var(--secondary);
     margin: 0;
 }
 
+/* Label de sección */
 .section-label {
     display: inline-flex;
     align-items: center;
+    gap: 6px;
+    background: var(--grad-soft);
     color: var(--accent);
-    background: var(--accent-dim);
     padding: 6px 14px;
-    border-radius: 999px;
-    font-weight: 800;
-    font-size: 0.8rem;
+    border-radius: var(--radius-pill);
+    font-weight: 700;
+    font-size: 0.78rem;
     margin-bottom: 16px;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
 }
 
 .info-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-    margin-top: 26px;
+    gap: 16px;
+    margin-top: 24px;
 }
 
 .info-box {
-    background: #f8fafc;
+    background: rgba(255,255,255,0.03);
     border: 1px solid var(--border);
-    border-radius: 20px;
+    border-radius: var(--radius-md);
     padding: 22px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.info-box:hover {
+    border-color: rgba(56, 189, 248, 0.3);
+    transform: translateY(-2px);
 }
 
 .info-box i {
-    color: var(--accent);
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     font-size: 1.5rem;
     margin-bottom: 12px;
+    display: block;
 }
 
 .info-box h4 {
     margin: 0 0 8px;
     font-size: 1rem;
+    color: var(--primary);
 }
 
 .info-box p {
-    font-size: 0.92rem;
+    font-size: 0.9rem;
     line-height: 1.6;
+    color: var(--secondary);
 }
 
 .text-center {
@@ -315,19 +505,7 @@ h3 {
 }
 
 /* =========================
-   Footer
-========================= */
-
-.footer {
-    width: 100%;
-    text-align: center;
-    padding: 28px 20px 36px;
-    color: var(--muted);
-    font-size: 0.9rem;
-}
-
-/* =========================
-   Página proyectos
+   Proyectos
 ========================= */
 
 .projects-page {
@@ -338,69 +516,110 @@ h3 {
 
 .page-header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 44px;
 }
 
 .page-header p {
     max-width: 680px;
     margin: 0 auto;
-    color: var(--muted);
+    color: var(--secondary);
 }
 
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
+    gap: 20px;
 }
 
 .project-card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    padding: 24px;
-    box-shadow: var(--shadow);
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    padding: 26px;
+    box-shadow: var(--shadow-md);
     display: flex;
     flex-direction: column;
     gap: 14px;
+    backdrop-filter: blur(10px);
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(56,189,248,0.5), rgba(167,139,250,0.5), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(167, 139, 250, 0.3);
+    box-shadow: var(--shadow-glow);
+}
+
+.project-card:hover::before {
+    opacity: 1;
 }
 
 .project-icon {
     width: 52px;
     height: 52px;
-    border-radius: 16px;
-    background: var(--accent-dim);
-    color: var(--accent);
+    border-radius: var(--radius-sm);
+    background: var(--grad-soft);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.4rem;
+    border: 1px solid rgba(56,189,248,0.2);
+}
+
+.project-icon i {
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .project-card h3 {
     color: var(--primary);
     margin: 0;
+    -webkit-text-fill-color: var(--primary);
+    background: none;
 }
 
 .project-card p {
-    color: var(--muted);
+    color: var(--secondary);
     margin: 0;
-    font-size: 0.95rem;
+    font-size: 0.93rem;
+    line-height: 1.6;
 }
 
 .project-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 7px;
     margin-top: auto;
 }
 
 .project-tags span {
-    background: #f1f5f9;
-    color: #475569;
-    border-radius: 999px;
-    padding: 6px 10px;
-    font-size: 0.75rem;
-    font-weight: 700;
+    background: rgba(255,255,255,0.06);
+    color: var(--secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    padding: 4px 11px;
+    font-size: 0.73rem;
+    font-weight: 600;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.project-tags span:hover {
+    border-color: rgba(56,189,248,0.4);
+    color: var(--accent);
 }
 
 /* =========================
@@ -409,10 +628,10 @@ h3 {
 
 .admin-access {
     position: fixed;
-    bottom: 20px;
-    left: 20px;
-    opacity: 0.3;
-    transition: opacity 0.3s ease;
+    bottom: 22px;
+    left: 22px;
+    opacity: 0.22;
+    transition: opacity 0.3s ease, box-shadow 0.3s ease;
     z-index: 1000;
 }
 
@@ -421,38 +640,39 @@ h3 {
 }
 
 .btn-admin {
-    padding: 10px 14px;
-    font-size: 12px;
-    background: #64748b;
+    padding: 9px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #312e81, #4c1d95);
+    border: 1px solid rgba(167,139,250,0.2);
+    border-radius: var(--radius-pill);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: var(--shadow-sm);
 }
 
-.saludo {
-    color: var(--accent);
-    font-weight: 700;
-    margin-bottom: 8px;
-    font-size: 1.1rem;
+.admin-access:hover .btn-admin {
+    box-shadow: 0 0 20px rgba(124,58,237,0.4);
 }
 
-#nombre-db {
-    font-size: clamp(3rem, 10vw, 5rem);
-    line-height: 1;
-    margin: 0;
-}
 /* =========================
-   Modal de administración
+   Modal admin
 ========================= */
 
 #admin-modal {
     display: none;
     position: fixed;
     inset: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(15, 23, 42, 0.82);
+    background: rgba(8, 8, 20, 0.8);
     z-index: 2000;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 #admin-modal.open {
@@ -460,43 +680,53 @@ h3 {
 }
 
 .modal-content {
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 18px;
+    background: #1a1a3e;
+    border: 1px solid rgba(167,139,250,0.2);
+    padding: 32px;
+    border-radius: var(--radius-lg);
     width: 100%;
     max-width: 500px;
     display: flex;
     flex-direction: column;
     gap: 14px;
-    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6), 0 0 40px rgba(124,58,237,0.15);
 }
 
 .modal-content h2 {
-    margin: 0 0 6px;
+    margin: 0 0 4px;
     font-family: 'DM Serif Display', serif;
-    color: var(--primary);
-    font-size: 1.7rem;
+    font-size: 1.6rem;
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .modal-content label {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     font-weight: 700;
     color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
 }
 
 .modal-content input,
 .modal-content textarea {
-    padding: 11px 13px;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    font-family: inherit;
-    font-size: 0.95rem;
+    padding: 11px 14px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
     outline: none;
+    background: rgba(255,255,255,0.05);
+    color: var(--primary);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .modal-content input:focus,
 .modal-content textarea:focus {
-    border-color: var(--accent);
+    border-color: rgba(167, 139, 250, 0.5);
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
 }
 
 #preview-img {
@@ -504,29 +734,43 @@ h3 {
     height: 88px;
     border-radius: 50%;
     object-fit: cover;
-    margin: 8px auto;
+    margin: 6px auto;
     display: block;
-    border: 3px solid var(--accent);
+    border: 3px solid transparent;
+    box-shadow: 0 0 0 3px rgba(56,189,248,0.4);
 }
 
 .modal-actions {
     display: flex;
     gap: 10px;
-    margin-top: 8px;
+    margin-top: 6px;
 }
 
 .btn-danger {
-    background: #ef4444;
+    background: linear-gradient(135deg, #dc2626, #991b1b);
     flex: 1;
 }
 
 .btn-success {
-    background: #22c55e;
+    background: var(--grad-main);
     flex: 2;
 }
 
 /* =========================
-   Ocultar admin al imprimir
+   Footer
+========================= */
+
+.footer {
+    width: 100%;
+    text-align: center;
+    padding: 28px 20px 40px;
+    color: var(--muted);
+    font-size: 0.88rem;
+    border-top: 1px solid var(--border);
+}
+
+/* =========================
+   Print
 ========================= */
 
 @media print {
@@ -538,65 +782,129 @@ h3 {
 }
 
 /* =========================
-   Responsive general
+   Responsive — Tablet
 ========================= */
 
 @media (max-width: 900px) {
-    .info-grid,
+    .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .projects-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
+/* =========================
+   Responsive — Móvil grande
+========================= */
+
 @media (max-width: 768px) {
     .nav-inner {
-        padding: 16px 20px;
+        padding: 14px 18px;
         flex-direction: column;
-        gap: 12px;
+        gap: 10px;
     }
 
     .nav-links {
         width: 100%;
         justify-content: center;
-        gap: 18px;
+        gap: 16px;
         flex-wrap: wrap;
     }
 
     .hero {
-        padding: 45px 18px 32px;
+        padding: 48px 16px 36px;
     }
 
     .bio {
-        font-size: 0.98rem;
+        font-size: 0.96rem;
     }
 
     .skills-grid {
         grid-template-columns: 1fr;
-        max-width: 430px;
+        max-width: 400px;
     }
 
     .button-bar {
         width: 100%;
         flex-direction: column;
         align-items: stretch;
+        max-width: 320px;
     }
 
     .btn {
         width: 100%;
+        justify-content: center;
     }
 
     .section-card {
-        padding: 26px 20px;
-        border-radius: 22px;
+        padding: 24px 18px;
+        border-radius: var(--radius-md);
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
     }
 
     .projects-page {
-        padding: 44px 18px;
+        padding: 40px 16px;
     }
 }
 
 /* =========================
-   Responsive admin
+   Responsive — Móvil pequeño
+========================= */
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.35rem;
+    }
+
+    .nav-links a {
+        font-size: 0.82rem;
+    }
+
+    #nombre-db {
+        font-size: clamp(2.4rem, 12vw, 3.2rem);
+        letter-spacing: -1px;
+    }
+
+    .hero {
+        padding-top: 36px;
+    }
+
+    .skill-tag {
+        font-size: 0.82rem;
+        padding: 9px 12px;
+    }
+
+    .btn {
+        font-size: 0.88rem;
+        padding: 12px 20px;
+    }
+
+    .section-card {
+        padding: 20px 14px;
+        border-radius: var(--radius-sm);
+    }
+
+    .project-card {
+        padding: 20px 16px;
+    }
+
+    .footer {
+        font-size: 0.8rem;
+        padding: 22px 16px 32px;
+    }
+}
+
+/* =========================
+   Responsive — Admin móvil
 ========================= */
 
 @media (max-width: 520px) {
@@ -606,8 +914,8 @@ h3 {
     }
 
     .modal-content {
-        padding: 22px;
-        border-radius: 16px;
+        padding: 22px 18px;
+        border-radius: var(--radius-md);
     }
 
     .modal-actions {
@@ -619,35 +927,5 @@ h3 {
         flex: initial;
         width: 100%;
     }
-}
-
-@media (max-width: 420px) {
-    .nav-links a {
-        font-size: 0.85rem;
-    }
-
-    .hero {
-        padding-top: 35px;
-    }
-
-    .skill-tag {
-        font-size: 0.85rem;
-        padding: 10px 12px;
-    }
-
-    .footer {
-        font-size: 0.82rem;
-    }
-}
-/* =========================
-   Botón descargar CV
-========================= */
-
-.btn-download {
-    background: #0f172a;
-}
-
-.btn-download:hover {
-    background: #020617;
 }
 
